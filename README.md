@@ -123,7 +123,3 @@ The Temperature Experiment investigates the effect of LLM temperature settings o
         I like Cliff's Deli Sandwich         Oh, Cliff's deli Sandwich. A masterpiece of flavor! The way the ingredients come together---it's practically an art form
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  [A diagram of a product AI-generated content may be incorrect.]: media/image6.png {width="2.9722222222222223in" height="4.354922353455818in"}
-  [A diagram of a software process AI-generated content may be incorrect.]: media/image7.png {width="6.623150699912511in" height="4.455696631671041in"}
-  [A diagram of a diagram AI-generated content may be incorrect.]: media/image13.png {width="5.063194444444444in" height="3.3754625984251967in"}
-  [A blue and green squares AI-generated content may be incorrect.]: media/image14.png {width="4.993667979002625in" height="3.3291141732283465in"}
