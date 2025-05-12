@@ -1,14 +1,18 @@
-# AI-NPC-Interactions-with-LLMs
+# Prompt Engineering AI NPC Interactions with LLMs
 This project explores AI NPC Interactions, where AI personas engage in structured, context-aware, evolving dialogues to simulate conversational intelligence, memory retention, and reasoning.
+
 
 
 # PROJECT IMPLEMENTATION
 
 The AI NPC Interaction project comprises nine experiments that explore advanced conversational AI through dynamic, personality driven, and context-aware agents, implemented using Python. This chapter outlines the implementation procedures for each experiment---Basic Prompting, Sentiment Analysis, Basic RAG Memory, News Discussion, Story Mode, Community Experiment, Personality Experiment, Interactive Conversation, and Temperature Experiment. Prior to executing the experiments, all dependencies are installed using pip install requests python-dotenv vaderSentiment transformers tensorflow chromadb sentence-transformers playwright openai matplotlib, and Playwright is configured with playwright install. The implementation begins by downloading the LLaMA 3.2 3B Instruct (gguf version) and, and compiling llama.cpp to host the model server. The llama server is launched with the command **.\\llama-server.exe -m Llama-3.2-3B-Instruct-f16.gguf \--host 127.0.0.1 \--port 8080 \--ctx-size 4096 \--threads 8 \--n-gpu-layers fifty** from the llama.cpp build directory. Every experiment script initializes the prompt using the requests library to send user prompts to the LLaMA server at http://127.0.0.1:8080/v1/chat/completions.
 
+
+
 ## 1. Basic prompting
 
 The Basic Prompting experiment creates an interactive non-player character "**Zorro**" that adapts its personality based on a villain's status, utilizing a local LLaMA model. The script employs a prompt template that adjusts Zorro's tone--- witty, wise and suggestive when the villain is alive, grateful and reflective when defeated, based on a mock villain status file, villain_status.txt. A background thread, implemented with the threading module, continuously monitors this file, updating the prompt dynamically and triggering a thank-you message when the villain's status changes to defeated. The script runs in a loop, accepting user input via the console, sending it to the LLaMA server, and displaying Zorro's responses until the user terminates the program.
+
 
 
 ## 2. Sentiment Analysis
@@ -23,9 +27,11 @@ The tone of each user input (e.g., polite, rude, or neutral) is detected using t
 The Basic RAG Memory experiment implements a Retrieval-Augmented Generation system to store and retrieve NPC context, ensuring factual consistency in conversations. A Python script sets up a ChromaDB persistent client, creating a collection named npc_facts with a cosine similarity metric. Contextual facts, such as NPC background or prior interactions, are embedded using the all-MiniLM-L6-v2 model, producing 384-dimensional vectors, and stored in ChromaDB with metadata like context. The script defines a retrieval function that embeds user queries with the same model, queries the database for the top five relevant facts using collection.query, and passes retrieved facts to a local LLaMA 3.2 3B Instruct model, hosted as described in the Zorro experiment. The LLaMA model generates responses grounded in the retrieved context, ensuring consistency. The script runs interactively, accepting user queries, retrieving relevant facts, and displaying NPC responses.
 
 
+
 ## 4. News Discussion
 
 The News Discussion experiment enables agents to discuss web-scraped news articles, with a LLaMA-based agent sharing content and conversing with a GPT-4o-mini-based agent. A Python script uses Playwright to navigate to the WKTV website, extract news article titles and summaries, and save them to articles.txt. The script parses articles.txt to 'n' number of articles and embeds their summaries using all-MiniLM-L6-v2 for storage in a ChromaDB collection, as in the RAG Memory experiment. The LLaMA 3.2 3B Instruct server is started, and a main agent retrieves an article summary from ChromaDB, sending it to the LLaMA server for a personality-driven response. This response is relayed to the GPT-4o-mini agent via the OpenAI API, configured with an API key in a .env file, using the ChatGPT Playground interface. The GPT-4o-mini agent generates a reply, and the conversation continues for a predefined number of turns, with logs saved to a file. The script executes the dialogue loop, displaying agent interactions in the console.
+
 
 
 ## 5. Story Mode
@@ -43,6 +49,8 @@ The Story Mode experiment simulates a conversation between two AI characters, Ag
 
     Your neighbor's family has a bakery in the city      **Bartholomew**      "He mentioned his family having a bakery there, he might have gone to look after the place"
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 ## 6. Community Experiment
 
@@ -76,6 +84,8 @@ Group 2 (Group corroboration):
     Alex said David accidentally took the book         **Harry**         My story aligns with Eva and Finn cause Alex said that David accidentally took the book so, Ben's story isn't adding up.
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
 ## 7. Personality Experiment
 
 The Personality Experiment models a community chat where AI Agent Chloe shares news with Alex, Ben, and David, followed by user interactions. A Python script, Knowledge seeder, creates ChromaDB knowledge bases for each agent, storing personality facts, friend descriptions, and news articles for Chloe, using all-MiniLM-L6-v2 embeddings. Agent Chloe retrieves a randomly selected article, such as the Fine Arc Program article, from ChromaDB, generates a sharing message with LLaMA, and sends it to another agent, who responds via LLaMA or GPT-4o-mini based on their personality: enthusiastic for Alex, analytical for Ben, or indifferent for David. The script logs these interactions and enters a user interaction phase, where users select an agent, input prompts, and receive responses grounded in prior conversations, with a "back" option to switch agents. The script runs the conversation loop, displaying interactions and saving logs. Below is the basic functionality of these characters:
@@ -102,9 +112,12 @@ The Personality Experiment models a community chat where AI Agent Chloe shares n
     Unenthusiastic, dismissive. The art studio just opened in the arts district.         **David**                                           "Meh. Unless it directly affects my day, I don't pay much attention.
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
 ## 8. Interactive Conversation
 
 The Interactive Conversation experiment compares LLaMA and ChatGPT processing times over 10 conversational turns and visualizing results in a bar chart. A conversation loop alternates between LLaMA and GPT-4o-mini, sending a predefined prompt or just letting them talk as both LLM's for 10 turns, measuring processing time for each response using Python's time module. The script calculates average processing times, stores them in a list, and uses matplotlib.pyplot to generate a bar chart comparing LLaMA and GPT-4o-mini, saved as processing_times.png. The script executes the conversation, displays the chart, and logs response times to a file.
+
 
 
 ## 9. Temperature Experiment
