@@ -10,7 +10,6 @@ The AI NPC Interaction project comprises nine experiments that explore advanced 
 
 The Basic Prompting experiment creates an interactive non-player character "**Zorro**" that adapts its personality based on a villain's status, utilizing a local LLaMA model. The script employs a prompt template that adjusts Zorro's tone--- witty, wise and suggestive when the villain is alive, grateful and reflective when defeated, based on a mock villain status file, villain_status.txt. A background thread, implemented with the threading module, continuously monitors this file, updating the prompt dynamically and triggering a thank-you message when the villain's status changes to defeated. The script runs in a loop, accepting user input via the console, sending it to the LLaMA server, and displaying Zorro's responses until the user terminates the program.
 
-**Figure 1. Flow chart for Basic Prompting**
 
 ## 2. Sentiment Analysis
 
@@ -18,25 +17,16 @@ This experiment introduces an emotionally adaptive character, "Amarath the Wizar
 
 The tone of each user input (e.g., polite, rude, or neutral) is detected using the sentiment classifier. This tone, along with the cumulative sentiment score, dynamically shapes the prompt sent to a local LLaMA server running Amarath's language model. The script's main loop handles user input, applies sentiment analysis, generates a tailored prompt, and prints Amarath's response. The experience continues until the user types \"exit.\"
 
-![A diagram of a product AI-generated content may be incorrect.]
-
-**Figure 2. Flow chart for Sentiment Analysis Experiment**
 
 ## 3. Basic RAG Memory
 
 The Basic RAG Memory experiment implements a Retrieval-Augmented Generation system to store and retrieve NPC context, ensuring factual consistency in conversations. A Python script sets up a ChromaDB persistent client, creating a collection named npc_facts with a cosine similarity metric. Contextual facts, such as NPC background or prior interactions, are embedded using the all-MiniLM-L6-v2 model, producing 384-dimensional vectors, and stored in ChromaDB with metadata like context. The script defines a retrieval function that embeds user queries with the same model, queries the database for the top five relevant facts using collection.query, and passes retrieved facts to a local LLaMA 3.2 3B Instruct model, hosted as described in the Zorro experiment. The LLaMA model generates responses grounded in the retrieved context, ensuring consistency. The script runs interactively, accepting user queries, retrieving relevant facts, and displaying NPC responses.
 
-![A diagram of a software process AI-generated content may be incorrect.]
-
-**Figure 3. Flow chart for Basic RAG Memory Approach**
 
 ## 4. News Discussion
 
 The News Discussion experiment enables agents to discuss web-scraped news articles, with a LLaMA-based agent sharing content and conversing with a GPT-4o-mini-based agent. A Python script uses Playwright to navigate to the WKTV website, extract news article titles and summaries, and save them to articles.txt. The script parses articles.txt to 'n' number of articles and embeds their summaries using all-MiniLM-L6-v2 for storage in a ChromaDB collection, as in the RAG Memory experiment. The LLaMA 3.2 3B Instruct server is started, and a main agent retrieves an article summary from ChromaDB, sending it to the LLaMA server for a personality-driven response. This response is relayed to the GPT-4o-mini agent via the OpenAI API, configured with an API key in a .env file, using the ChatGPT Playground interface. The GPT-4o-mini agent generates a reply, and the conversation continues for a predefined number of turns, with logs saved to a file. The script executes the dialogue loop, displaying agent interactions in the console.
 
-![A diagram of a diagram AI-generated content may be incorrect.]
-
-**Figure 4. Flow chart for News Discussion Experiment**
 
 ## 5. Story Mode
 
@@ -62,7 +52,6 @@ Group 1 (Incident sharing):
 
   ------------------------------------------------------------------------------------------------------------------
         **Memory**             **Character**                                  **Result**
-  ----------------------- ----------------------- ------------------------------------------------------------------
     David took the book          **Alex**                   Harry, I saw David taking the book yesterday.
 
     Chloe took the book           **Ben**          Grace, I'm telling you, it was Chloe, I saw her taking the book.
@@ -76,7 +65,6 @@ Group 2 (Group corroboration):
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
            **Memory (from group 1)**                **Character**                                                              **Result**
-  -------------------------------------------- ----------------------- --------------------------------------------------------------------------------------------------------------------------
           David said he took the book.                 **Eva**                                       David himself said that he took the book, I trust his honesty.
 
       Chloe said that David took the book.            **Finn**                                   "Same as Eva, Chloe said that David took the book so that makes sense"
@@ -90,11 +78,9 @@ Group 2 (Group corroboration):
 
 The Personality Experiment models a community chat where AI Agent Chloe shares news with Alex, Ben, and David, followed by user interactions. A Python script, Knowledge seeder, creates ChromaDB knowledge bases for each agent, storing personality facts, friend descriptions, and news articles for Chloe, using all-MiniLM-L6-v2 embeddings. Agent Chloe retrieves a randomly selected article, such as the Fine Arc Program article, from ChromaDB, generates a sharing message with LLaMA, and sends it to another agent, who responds via LLaMA or GPT-4o-mini based on their personality: enthusiastic for Alex, analytical for Ben, or indifferent for David. The script logs these interactions and enters a user interaction phase, where users select an agent, input prompts, and receive responses grounded in prior conversations, with a "back" option to switch agents. The script runs the conversation loop, displaying interactions and saving logs. Below is the basic functionality of these characters:
 
-**Chloe says**: The Fine art studio has just opened in the arts district.
 
   ------------------------------------------------------------------------------------------------------------------
              **Memory**                 **Character**                             **Result**
-  -------------------------------- ----------------------- ---------------------------------------------------------
      Excited about everything.            **Alex**                      Wow that's a great initiative!
 
    Intrigued, Analyses the impact          **Ben**          Fascinating. I wonder if it will challenge conventions?
@@ -102,11 +88,9 @@ The Personality Experiment models a community chat where AI Agent Chloe shares n
     Unenthusiastic, dismissive.           **David**                      Eh, how does that impact me?
   ------------------------------------------------------------------------------------------------------------------
 
-**User: Do you care about the news?**
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                                     **Memory**                                        **Character**                                                                      **Result**
-  ------------------------------------------------------------------------------ ----------------------- -------------------------------------------------------------------------------------------------------------------------------------------
        Excited about everything, Arts studio just opened in arts district.              **Alex**                        "That's amazing! A new space for creativity to thrive, I bet it's going to inspire so many incredible works!"
 
      Intrigued, Analyses the impact. Arts studio just opened in arts district            **Ben**          "That's interesting. I wonder how this will shape the local arts scene. Will it attract emerging talent or reinforce established styles?"
@@ -118,9 +102,6 @@ The Personality Experiment models a community chat where AI Agent Chloe shares n
 
 The Interactive Conversation experiment compares LLaMA and ChatGPT processing times over 10 conversational turns and visualizing results in a bar chart. A conversation loop alternates between LLaMA and GPT-4o-mini, sending a predefined prompt or just letting them talk as both LLM's for 10 turns, measuring processing time for each response using Python's time module. The script calculates average processing times, stores them in a list, and uses matplotlib.pyplot to generate a bar chart comparing LLaMA and GPT-4o-mini, saved as processing_times.png. The script executes the conversation, displays the chart, and logs response times to a file.
 
-![A blue and green squares AI-generated content may be incorrect.]
-
-**Figure 5. Average Processing times for LLaMA and ChatGPT**
 
 ## 9. Temperature Experiment
 
@@ -128,7 +109,6 @@ The Temperature Experiment investigates the effect of LLM temperature settings o
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
    **Temperature 0.1 (direct and short)**                                              **Temperature 0.9 (More Creative)**
-  ---------------------------------------- ----------------------------------------------------------------------------------------------------------------------------
         I like Cliff's Deli Sandwich         The Cliffs deli Sandwich is a revelation. Every bite is like a warm embrace---comforting, nostalgic, utterly satisfying.
 
         I like Cliff's Deli Sandwich        Cliff's deli Sandwich is the pinnacle of culinary genius. If there were a sandwich Hall of Fame, it'd have its own exhibit
