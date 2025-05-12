@@ -2,6 +2,7 @@
 
 This project explores AI-driven Non-Player Character (NPC) interactions using Large Language Models (LLMs) to create structured, context-aware, and evolving dialogues. The goal is to simulate conversational intelligence, memory retention, and reasoning through dynamic, personality-driven agents.
 
+**LLM's Used:** LLaMA 3.2 3B Instruct(locally run via llama.cpp), GPT-4o-mini (via Chatgpt playground, API is required). You can also update the code and use Google AI Studio API key (its free) instead of OpenAI API key. But you need to update the code in order to run it.
 ---
 <br />
 
