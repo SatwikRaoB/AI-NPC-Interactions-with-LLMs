@@ -3,7 +3,7 @@
 This project explores AI-driven Non-Player Character (NPC) interactions using Large Language Models (LLMs) to create structured, context-aware, and evolving dialogues. The goal is to simulate conversational intelligence, memory retention, and reasoning through dynamic, personality-driven agents.
 
 ---
-
+</br>
 ## Prerequisites
 
 - Python 3.8 or higher  
@@ -11,7 +11,7 @@ This project explores AI-driven Non-Player Character (NPC) interactions using La
 - Internet connection (for downloading models and dependencies)  
 
 ---
-
+</br>
 ## Setup Instructions
 
 1. **Install Dependencies:**
@@ -43,7 +43,7 @@ This project explores AI-driven Non-Player Character (NPC) interactions using La
    ```
 
 ---
-
+</br>
 ## Experiments
 
 ### 1. Basic Prompting
@@ -57,6 +57,8 @@ The script employs a prompt template that adjusts Zorro's tone:
 This adjustment is based on a mock villain status file, `villain_status.txt`. A background thread, implemented with the `threading` module, continuously monitors this file, updating the prompt dynamically and triggering a thank-you message when the villain's status changes to defeated.
 
 The script runs in a loop, accepting user input via the console, sending it to the LLaMA server, and displaying Zorro's responses until the user terminates the program.
+File to run: wizard.py
+</br>
 
 ---
 
@@ -70,6 +72,8 @@ The tone of each user input (e.g., polite, rude, or neutral) is detected using t
 
 The script's main loop handles user input, applies sentiment analysis, generates a tailored prompt, and prints Amarath's response. The experience continues until the user types `"exit"`.
 
+File to run: transformertone.py
+</br>
 ---
 
 ### 3. Basic RAG Memory
@@ -81,10 +85,21 @@ A Python script sets up a ChromaDB persistent client, creating a collection name
 The script defines a retrieval function that embeds user queries with the same model, queries the database for the top five relevant facts using `collection.query`, and passes retrieved facts to a local LLaMA 3.2 3B Instruct model. The LLaMA model generates responses grounded in the retrieved context, ensuring consistency.
 
 The script runs interactively, accepting user queries, retrieving relevant facts, and displaying NPC responses.
-
+File to run: main.py or combinedcode.py  
+</br>
 ---
 
-### 4. News Discussion
+### 4. Interactive Conversation
+
+The Interactive Conversation experiment compares LLaMA and ChatGPT processing times over 10 conversational turns and visualizing results in a bar chart.
+
+A conversation loop alternates between LLaMA and GPT-4o-mini, sending a predefined prompt or just letting them talk as both LLM's for 10 turns, measuring processing time for each response using Python's `time` module. The script calculates average processing times, stores them in a list, and uses `matplotlib.pyplot` to generate a bar chart comparing LLaMA and GPT-4o-mini, saved as `processing_times.png`. The script executes the conversation, displays the chart, and logs response times to a file.
+
+</br>
+File to run: interact.py
+---
+
+### 5. News Discussion
 
 The News Discussion experiment enables agents to discuss web-scraped news articles, with a LLaMA-based agent sharing content and conversing with a GPT-4o-mini-based agent.
 
@@ -94,9 +109,11 @@ The LLaMA 3.2 3B Instruct server is started, and a main agent retrieves an artic
 
 The script executes the dialogue loop, displaying agent interactions in the console.
 
+File to run: interact.py
+</br>
 ---
 
-### 5. Story Mode
+### 6. Story Mode
 
 The Story Mode experiment simulates a conversation between two AI characters, Agnes and Bartholomew, who discuss their neighbors and village life in a fictional village, drawing on predefined knowledge facts to enrich their dialogue.
 
@@ -117,9 +134,11 @@ The script alternates between the characters for five turns, ensuring each respo
 | William has family business       | Agnes         | "He mentioned about having some family business in the city..."        |
 | Family has a bakery               | Bartholomew   | "He mentioned his family having a bakery there..."                     |
 
+File to run: main.py
+</br>
 ---
 
-### 6. Community Experiment
+### 7. Community Experiment
 
 The Community Experiment simulates a community chat among eight agents (A, B, C, D, E, F, G, H) to identify a liar in a missing library book incident, observed by Detective Ruth Miller.
 
@@ -149,9 +168,11 @@ The script runs pairwise and group phases sequentially, saving logs and displayi
 | Ben saw Chloe take it      | Grace     | Ben said Chloe took the book, contradicts Eva and Finn         |
 | Alex said David did it     | Harry     | Aligns with Eva and Finn, Ben’s story doesn’t add up           |
 
+File to run: commmunity_chat.py
+</br>
 ---
 
-### 7. Personality Experiment
+### 8. Personality Experiment
 
 The Personality Experiment models a community chat where AI Agent Chloe shares news with Alex, Ben, and David, followed by user interactions.
 
@@ -166,16 +187,10 @@ The script logs these interactions and enters a user interaction phase, where us
 | Excited about everything           | Alex      | Wow that's a great initiative!                          |
 | Intrigued, analyses the impact     | Ben       | Fascinating. I wonder if it will challenge conventions? |
 | Unenthusiastic, dismissive         | David     | Eh, how does that impact me?                            |
-
+File to run: personality.py
+</br>
 ---
 
-### 8. Interactive Conversation
-
-The Interactive Conversation experiment compares LLaMA and ChatGPT processing times over 10 conversational turns and visualizing results in a bar chart.
-
-A conversation loop alternates between LLaMA and GPT-4o-mini, sending a predefined prompt or just letting them talk as both LLM's for 10 turns, measuring processing time for each response using Python's `time` module. The script calculates average processing times, stores them in a list, and uses `matplotlib.pyplot` to generate a bar chart comparing LLaMA and GPT-4o-mini, saved as `processing_times.png`. The script executes the conversation, displays the chart, and logs response times to a file.
-
----
 
 ### 9. Temperature Experiment
 
@@ -191,5 +206,5 @@ The LLaMA 3.2 3B Instruct server is launched as described previously. In the scr
 | I like Cliff's Deli Sandwich       | Cliff's deli Sandwich is the pinnacle of culinary genius...          |
 | I like Cliff's Deli Sandwich       | There's just something magical about Cliff's deli Sandwich...        |
 | I like Cliff's Deli Sandwich       | Oh, Cliff's deli Sandwich. A masterpiece of flavor...                |
-
+File to run: chloe.py
 ---
