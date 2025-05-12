@@ -2,7 +2,7 @@
 This project explores AI NPC Interactions, where AI personas engage in structured, context-aware, evolving dialogues to simulate conversational intelligence, memory retention, and reasoning.
 
 
-# PROJECT IMPLEMENTATION {#project-implementation .Heading}
+# PROJECT IMPLEMENTATION
 
 The AI NPC Interaction project comprises nine experiments that explore advanced conversational AI through dynamic, personality driven, and context-aware agents, implemented using Python. This chapter outlines the implementation procedures for each experiment---Basic Prompting, Sentiment Analysis, Basic RAG Memory, News Discussion, Story Mode, Community Experiment, Personality Experiment, Interactive Conversation, and Temperature Experiment. Prior to executing the experiments, all dependencies are installed using pip install requests python-dotenv vaderSentiment transformers tensorflow chromadb sentence-transformers playwright openai matplotlib, and Playwright is configured with playwright install. The implementation begins by downloading the LLaMA 3.2 3B Instruct (gguf version) and, and compiling llama.cpp to host the model server. The llama server is launched with the command **.\\llama-server.exe -m Llama-3.2-3B-Instruct-f16.gguf \--host 127.0.0.1 \--port 8080 \--ctx-size 4096 \--threads 8 \--n-gpu-layers fifty** from the llama.cpp build directory. Every experiment script initializes the prompt using the requests library to send user prompts to the LLaMA server at http://127.0.0.1:8080/v1/chat/completions.
 
@@ -34,14 +34,14 @@ The Story Mode experiment simulates a conversation between two AI characters, Ag
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
                      **Memory**                          **Character**                                               **Output**
-  ------------------------------------------------- ----------------------- ---------------------------------------------------------------------------------------------
+
            Your neighbor has gone to city                  **Agnes**                    "Oh, did you hear, William has gone to the city, wonder why he did?"
 
            Willam has cousins in the city               **Bartholomew**                        "Oh, he must've gone to his cousins place in the city"
 
        William has family business in the city             **Agnes**            "He mentioned about having some family business in the city, but he didn't elaborate"
 
-   Your neighbor's family has a bakery in the city      **Bartholomew**      "He mentioned his family having a bakery there, he might have gone to look after the place"
+    Your neighbor's family has a bakery in the city      **Bartholomew**      "He mentioned his family having a bakery there, he might have gone to look after the place"
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 6. Community Experiment
@@ -52,6 +52,7 @@ Group 1 (Incident sharing):
 
   ------------------------------------------------------------------------------------------------------------------
         **Memory**             **Character**                                  **Result**
+        
     David took the book          **Alex**                   Harry, I saw David taking the book yesterday.
 
     Chloe took the book           **Ben**          Grace, I'm telling you, it was Chloe, I saw her taking the book.
@@ -65,13 +66,14 @@ Group 2 (Group corroboration):
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
            **Memory (from group 1)**                **Character**                                                              **Result**
+           
           David said he took the book.                 **Eva**                                       David himself said that he took the book, I trust his honesty.
 
       Chloe said that David took the book.            **Finn**                                   "Same as Eva, Chloe said that David took the book so that makes sense"
 
      Ben said he saw Chloe taking the book.           **Grace**                    "Ben said that Chloe was the one who took the book, which contradicts both what Eva and Finn said"
 
-   Alex said David accidentally took the book         **Harry**         My story aligns with Eva and Finn cause Alex said that David accidentally took the book so, Ben's story isn't adding up.
+    Alex said David accidentally took the book         **Harry**         My story aligns with Eva and Finn cause Alex said that David accidentally took the book so, Ben's story isn't adding up.
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 7. Personality Experiment
@@ -81,9 +83,10 @@ The Personality Experiment models a community chat where AI Agent Chloe shares n
 
   ------------------------------------------------------------------------------------------------------------------
              **Memory**                 **Character**                             **Result**
+             
      Excited about everything.            **Alex**                      Wow that's a great initiative!
 
-   Intrigued, Analyses the impact          **Ben**          Fascinating. I wonder if it will challenge conventions?
+    Intrigued, Analyses the impact          **Ben**          Fascinating. I wonder if it will challenge conventions?
 
     Unenthusiastic, dismissive.           **David**                      Eh, how does that impact me?
   ------------------------------------------------------------------------------------------------------------------
@@ -91,11 +94,12 @@ The Personality Experiment models a community chat where AI Agent Chloe shares n
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                                     **Memory**                                        **Character**                                                                      **Result**
+                                    
        Excited about everything, Arts studio just opened in arts district.              **Alex**                        "That's amazing! A new space for creativity to thrive, I bet it's going to inspire so many incredible works!"
 
      Intrigued, Analyses the impact. Arts studio just opened in arts district            **Ben**          "That's interesting. I wonder how this will shape the local arts scene. Will it attract emerging talent or reinforce established styles?"
 
-   Unenthusiastic, dismissive. The art studio just opened in the arts district.         **David**                                           "Meh. Unless it directly affects my day, I don't pay much attention.
+    Unenthusiastic, dismissive. The art studio just opened in the arts district.         **David**                                           "Meh. Unless it directly affects my day, I don't pay much attention.
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 8. Interactive Conversation
@@ -108,7 +112,8 @@ The Interactive Conversation experiment compares LLaMA and ChatGPT processing ti
 The Temperature Experiment investigates the effect of LLM temperature settings on response repetition, observing repetitive outputs at low temperatures and varied outputs at high temperatures. The LLaMA 3.2 3B Instruct server is launched as described previously. In the script, user can describe a simple prompt, such as "What do you like?" to the LLaMA server ten times at two temperature settings: 0.1 for low and 0.9 for high. At temperature 0.1, the script configures the API call with temperature=0.1 to produce near-identical responses, while at 0.9, it uses temperature=0.9 to generate paraphrased, creative non-repetitive responses. The script logs all responses to a file, comparing outputs to confirm repetition at low temperature and variation at high temperature. Below table shows how the dialogue differs for each temperature:
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   **Temperature 0.1 (direct and short)**                                              **Temperature 0.9 (More Creative)**
+    **Temperature 0.1 (direct and short)**                                              **Temperature 0.9 (More Creative)**
+    
         I like Cliff's Deli Sandwich         The Cliffs deli Sandwich is a revelation. Every bite is like a warm embrace---comforting, nostalgic, utterly satisfying.
 
         I like Cliff's Deli Sandwich        Cliff's deli Sandwich is the pinnacle of culinary genius. If there were a sandwich Hall of Fame, it'd have its own exhibit
