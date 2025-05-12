@@ -81,6 +81,8 @@ The tone of each user input (e.g., polite, rude, or neutral) is detected using t
 The script's main loop handles user input, applies sentiment analysis, generates a tailored prompt, and prints Amarath's response. The experience continues until the user types `"exit"`.
 
 File to run: transformertone.py
+
+Note: There is an other sentiment analyzer, "VaderAnalysis," which I also tested, but I preferred the BERT-based model more. I left the VaderAnalysis code in the folder, feel free to try it out if you can. 
 <br />
 
 ---
