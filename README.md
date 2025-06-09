@@ -13,7 +13,8 @@ I Highly recommend the Tone Analysis Exepriment where I used the BERT Based Unca
 
 - Python 3.8 or higher  
 - GPU (recommended for TensorFlow and LLaMA server)  
-- Internet connection (for downloading models and dependencies)  
+- Internet connection (for downloading models and dependencies)
+- Install llama.cpp by running the build. Check llama.cpp github for further instructions.
 
 ---
 <br />
