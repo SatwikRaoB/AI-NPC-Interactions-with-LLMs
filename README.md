@@ -1,6 +1,6 @@
 # Prompt Engineering AI NPC Interactions with LLMs
 
-This project explores AI-driven Non-Player Character (NPC) interactions using Large Language Models (LLMs) to create structured, context-aware, and evolving dialogues. The goal is to simulate conversational intelligence, memory retention, and reasoning through dynamic, personality-driven agents.
+This project explores AI-driven Non-Player Character (NPC) interactions using Large Language Models (LLMs) to create structured, context-aware, and evolving dialogues through RAG Pipelines. The goal is to simulate conversational intelligence, memory retention, and reasoning through dynamic, personality-driven agents.
 
 I Highly recommend the Tone Analysis Exepriment where I used the BERT Based Uncased Sentiment Analysis to detect tone of the Users prompt and change the NPC behaviour accordingly. This is the first instance of using Tone Analysis in AI NPC Projects, rest of the experiments are just iterations of the current projects.
 
